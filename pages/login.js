@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { signIn } from 'next-auth/react';
 import Head from 'next/head';
-import { motion } from 'framer-motion';
-import { ShieldCheck } from 'lucide-react';
 import { LOGO_URL, ORG_NAME, APP_TITLE } from '../lib/branding';
 
 function normalizeRedirect(value) {
@@ -17,171 +15,86 @@ function normalizeRedirect(value) {
 export default function LoginPage() {
   const router = useRouter();
   const [error, setError] = useState('');
-  const [redirectedFrom, setRedirectedFrom] = useState('/');
   const [loading, setLoading] = useState(false);
-  const [ssoLoading, setSsoLoading] = useState(false);
-  const [hasAzureProvider, setHasAzureProvider] = useState(null);
+  const [hasAzureProvider, setHasAzureProvider] = useState(false);
+  const redirectTo = normalizeRedirect(router.query.redirectedFrom);
 
   useEffect(() => {
-    if (!router.isReady) return;
-    setRedirectedFrom(normalizeRedirect(router.query.redirectedFrom));
-  }, [router.isReady, router.query.redirectedFrom]);
-
-  useEffect(() => {
-    if (!router.isReady) return;
+    if (!router.isReady) return undefined;
     let cancelled = false;
-
     fetch('/api/auth/me')
       .then(r => r.json())
-      .then(data => {
-        if (!cancelled && data?.user?.isLoggedIn) {
-          router.replace(normalizeRedirect(router.query.redirectedFrom));
-        }
-      })
+      .then(data => { if (!cancelled && data?.user?.isLoggedIn) router.replace(redirectTo); })
       .catch(() => {});
-
-    return () => { cancelled = true; };
-  }, [router]);
-
-  useEffect(() => {
-    let cancelled = false;
-
     fetch('/api/auth/providers')
       .then(r => r.json())
-      .then(providers => {
-        if (!cancelled) {
-          setHasAzureProvider(Boolean(providers?.['azure-ad']));
-        }
-      })
-      .catch(() => {
-        if (!cancelled) setHasAzureProvider(false);
-      });
-
+      .then(providers => { if (!cancelled) setHasAzureProvider(Boolean(providers?.['azure-ad'])); })
+      .catch(() => {});
     return () => { cancelled = true; };
-  }, []);
+  }, [router, redirectTo]);
 
   async function handleSubmit(event) {
     event.preventDefault();
     setError('');
     setLoading(true);
-
+    const form = event.currentTarget;
     const result = await signIn('credentials', {
-      username: event.currentTarget.username.value,
-      password: event.currentTarget.password.value,
+      username: form.username.value,
+      password: form.password.value,
       redirect: false,
-      callbackUrl: redirectedFrom,
+      callbackUrl: redirectTo,
     });
-
     if (result?.ok) {
-      router.replace(redirectedFrom);
+      router.replace(redirectTo);
     } else {
-      setError('Échec de la connexion. Veuillez vérifier vos identifiants.');
+      setError('Identifiant ou mot de passe incorrect.');
       setLoading(false);
     }
-  }
-
-  async function handleAzureSignIn() {
-    setError('');
-    setSsoLoading(true);
-    await signIn('azure-ad', { callbackUrl: redirectedFrom });
   }
 
   return (
     <>
       <Head>
-        <title>Connexion — {APP_TITLE}</title>
-        <meta charSet="UTF-8" />
+        <title>{`Connexion — ${APP_TITLE}`}</title>
       </Head>
-
-      <header className="hero business-hero">
-        <div className="page-shell hero-grid">
-          <div className="hero-brand">
-            <div className="brand-mark">
-              {LOGO_URL && <img src={LOGO_URL} alt={ORG_NAME} />}
-            </div>
-            <div>
-              <p className="eyebrow">{ORG_NAME}</p>
-              <motion.h1
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                {APP_TITLE}
-              </motion.h1>
-              <p className="hero-subtitle">
-                Connectez-vous pour accéder à la cartographie du système d&apos;information.
-              </p>
+      <main className="login-page">
+        <div className="login-card">
+          <div className="brand">
+            {/* Logo configurable, éventuellement hors domaine : <img> volontaire */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            {LOGO_URL && <img src={LOGO_URL} alt="" />}
+            <div className="brand-text">
+              {ORG_NAME && <span className="brand-org">{ORG_NAME}</span>}
+              <span className="brand-title">{APP_TITLE}</span>
             </div>
           </div>
-        </div>
-      </header>
+          <span className="kicker">Accès réservé</span>
+          <h1>Se connecter</h1>
 
-      <main className="login-shell page-shell">
-        <motion.div
-          className="login-card"
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.15 }}
-        >
-          <div className="login-card-header">
-            <span className="business-section-kicker">Accès sécurisé</span>
-            <h2>Se connecter</h2>
-          </div>
-
-          <form className="login-form" onSubmit={handleSubmit} noValidate>
-            <div className="login-field">
-              <label htmlFor="username">Nom d&apos;utilisateur</label>
-              <input
-                type="text"
-                id="username"
-                name="username"
-                autoComplete="username"
-                required
-              />
+          <form onSubmit={handleSubmit} noValidate>
+            <div className="field">
+              <label htmlFor="username">Identifiant</label>
+              <input id="username" name="username" type="text" autoComplete="username" required />
             </div>
-
-            <div className="login-field">
+            <div className="field">
               <label htmlFor="password">Mot de passe</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                autoComplete="current-password"
-                required
-              />
+              <input id="password" name="password" type="password" autoComplete="current-password" required />
             </div>
-
-            {error && (
-              <p className="login-error" role="alert">{error}</p>
-            )}
-
-            <p className="login-info">
-              Le mot de passe se trouve dans votre coffre-fort sous la clé <strong>CARTOGRAPHIE-SI</strong>.
-            </p>
-
-            <button type="submit" className="login-submit" disabled={loading}>
-              {loading ? 'Connexion...' : 'Se connecter'}
+            {error && <p className="login-error" role="alert">{error}</p>}
+            <button type="submit" className="btn btn-primary" disabled={loading}>
+              {loading ? 'Connexion…' : 'Se connecter'}
             </button>
           </form>
 
-          <div className="login-sso">
-            <div className="login-divider" aria-hidden="true">
-              <span />
-              <span>ou</span>
-              <span />
-            </div>
-            <button
-              type="button"
-              className="login-sso-button"
-              onClick={handleAzureSignIn}
-              disabled={!hasAzureProvider || ssoLoading}
-              title={hasAzureProvider === false ? 'Provider Azure AD non configuré' : 'Connexion Entra ID / Azure AD'}
-            >
-              <ShieldCheck aria-hidden="true" size={19} />
-              {ssoLoading ? 'Redirection SSO...' : 'Continuer avec Entra ID / Azure AD'}
-            </button>
-          </div>
-        </motion.div>
+          {hasAzureProvider && (
+            <>
+              <div className="divider">ou</div>
+              <button type="button" className="btn" onClick={() => signIn('azure-ad', { callbackUrl: redirectTo })}>
+                Se connecter avec Entra ID
+              </button>
+            </>
+          )}
+        </div>
       </main>
     </>
   );

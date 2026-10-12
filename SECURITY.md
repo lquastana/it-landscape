@@ -29,10 +29,10 @@ Nous accusons réception dès que possible et priorisons les failles touchant l'
 Les zones suivantes demandent une attention particulière :
 
 - `lib/authOptions.js`, `middleware.js`, `lib/authz.js` et `lib/accessControl.js` ;
-- les endpoints sous `pages/api/admin/`, `pages/api/file/` et `pages/api/export.js` ;
+- `pages/api/landscape.js` et la lecture NetBox (`lib/landscape.js`) ;
 - `scripts/startup-security-check.mjs` ;
 - les fichiers `data/auth/*.json` ;
-- les intégrations NetBox et les variables d'environnement.
+- les variables d'environnement, en particulier le jeton NetBox.
 
 ## Secrets et données
 

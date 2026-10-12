@@ -23,8 +23,12 @@ jobs:
         run: npm run build
       - name: Lint
         run: npm run lint
-      - name: Audit
-        run: npm audit --audit-level=high
+      # Bloquant sur ce qui part en production ; l'outillage de développement (lint)
+      # n'est bloquant qu'en critique (ex. braces GHSA-vfj7-8cjw-p6xm, sans correctif publié).
+      - name: Audit (dépendances de production)
+        run: npm audit --omit=dev --audit-level=high
+      - name: Audit (outillage de développement)
+        run: npm audit --audit-level=critical
 
   secret-scan:
     runs-on: ubuntu-latest

@@ -1,48 +1,30 @@
+import { readFileSync } from 'node:fs';
+
+const { version } = JSON.parse(readFileSync(new URL('./package.json', import.meta.url), 'utf-8'));
+
+// Anciennes pages (versions ≤ 0.3) : la vue technique vit désormais dans NetBox.
+const RETIRED_PAGES = [
+  '/applications', '/flux', '/network', '/quality', '/incident', '/incidents', '/simulation',
+  '/simulation-incident', '/netbox-reconciliation', '/unauthorized',
+  '/admin-metier', '/admin-flux', '/admin-infra', '/admin-trigramme', '/admin-habilitations', '/admin-netbox-reconciliation',
+];
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  poweredByHeader: false,
+  env: { NEXT_PUBLIC_APP_VERSION: version },
   async redirects() {
-    return [
-      {
-        source: '/incidents',
-        destination: '/incident',
-        permanent: false,
-      },
-      {
-        source: '/simulation-incident',
-        destination: '/incident',
-        permanent: false,
-      },
-      {
-        source: '/simulation',
-        destination: '/incident',
-        permanent: false,
-      },
-      {
-        source: '/netbox-reconciliation',
-        destination: '/admin-netbox-reconciliation',
-        permanent: false,
-      },
-    ];
+    return RETIRED_PAGES.map(source => ({ source, destination: '/', permanent: false }));
   },
   async headers() {
     return [
       {
-        source: '/_next/static/chunks/:path*',
+        source: '/:path*',
         headers: [
-          { key: 'Content-Type', value: 'application/javascript; charset=utf-8' },
-        ],
-      },
-      {
-        source: '/_next/static/runtime/:path*',
-        headers: [
-          { key: 'Content-Type', value: 'application/javascript; charset=utf-8' },
-        ],
-      },
-      {
-        source: '/_next/static/development/:path*',
-        headers: [
-          { key: 'Content-Type', value: 'application/javascript; charset=utf-8' },
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'Referrer-Policy', value: 'same-origin' },
+          { key: 'X-Frame-Options', value: 'DENY' },
         ],
       },
     ];

@@ -21,11 +21,10 @@ RUN npm ci --omit=dev && \
 COPY --chown=node:node --from=builder /app/.next ./.next
 COPY --chown=node:node --from=builder /app/public ./public
 COPY --chown=node:node --from=builder /app/pages ./pages
+COPY --chown=node:node --from=builder /app/components ./components
 COPY --chown=node:node --from=builder /app/lib ./lib
 COPY --chown=node:node --from=builder /app/styles ./styles
 COPY --chown=node:node --from=builder /app/data ./data
-COPY --chown=node:node --from=builder /app/components ./components
-COPY --chown=node:node --from=builder /app/hooks ./hooks
 COPY --chown=node:node --from=builder /app/scripts ./scripts
 COPY --chown=node:node --from=builder /app/middleware.js ./middleware.js
 COPY --chown=node:node --from=builder /app/next.config.js ./next.config.js

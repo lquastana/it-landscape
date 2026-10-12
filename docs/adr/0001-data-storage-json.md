@@ -1,5 +1,7 @@
 # ADR-0001: Stockage des données en fichiers JSON
 
+> **Remplacé** par [ADR 0003](0003-vue-metier-netbox.md) (version 0.4) : les données métier sont lues dans NetBox.
+
 ## Contexte
 Le projet doit être déployable rapidement dans des environnements hétérogènes (hôpitaux, GHT) avec un minimum de dépendances.
 

@@ -1,6 +1,7 @@
 # Contribuer
 
-Merci de votre intérêt pour `it-landscape`. Le projet est un MVP Next.js pour cartographier un système d'information hospitalier : applications, processus, flux, réseau, infrastructure et impacts d'incident.
+Merci de votre intérêt pour `it-landscape`. Le projet est une vue métier en lecture seule du
+système d'information, alimentée par NetBox et le plugin netbox-it-landscape.
 
 ## Démarrage local
 
@@ -9,70 +10,37 @@ npm install
 npm run dev
 ```
 
-Application locale : http://localhost:3000
-
-Avec Docker :
-
-```bash
-make docker
-```
-
-Avec NetBox local :
-
-```bash
-make docker-netbox
-# ou, pour forcer un rebuild :
-make docker-netbox-run-build
-node scripts/netbox-seed.js
-```
-
-Les cibles Docker du `Makefile` lancent Compose en mode attaché. Pour un lancement détaché, utiliser directement `docker compose up -d --build` ou `docker compose --profile netbox up -d --build`.
+Application locale : http://localhost:3000 (jeu de démonstration sans NetBox ; compte `viewer` /
+`password`). Pour brancher un NetBox, renseigner `NETBOX_URL` et `NETBOX_TOKEN` (lecture seule)
+dans `.env.local`.
 
 ## Avant de proposer une modification
 
-1. Ouvrir ou choisir une issue, idéalement labellisée `good first issue` ou `help wanted`.
-2. Créer une branche courte et descriptive, par exemple `docs/netbox-mapping` ou `fix/login-redirect`.
-3. Garder les changements ciblés : une PR doit résoudre un sujet clair.
-4. Ne pas commiter de secrets, `.env`, exports contenant des données réelles, ou sauvegardes locales.
+1. Ouvrir ou choisir une issue.
+2. Créer une branche courte et descriptive, par exemple `fix/filtre-hebergement`.
+3. Garder les changements ciblés : une PR résout un sujet clair.
+4. Ne pas commiter de secrets, `.env`, ni de données réelles.
 
-## Commandes de vérification
+## Vérifications
 
 ```bash
 npm test
+npm run lint
 npm run build
 ```
 
-Selon le changement, lancez aussi :
-
-```bash
-npm run lint
-npm audit --audit-level=high
-```
-
-`npm run lint` peut afficher des avertissements Next.js existants ; la commande doit toutefois se terminer avec un code de sortie valide.
-
 ## Données de démonstration
 
-Les fichiers `data/*.json`, `data/*.infra.json`, `data/*.network.json` et `data/*.flux.json` sont des données de démonstration. Toute contribution sur ces fichiers doit rester fictive et ne jamais contenir d'information patient, agent, établissement réel non autorisé, secret ou token.
+`data/demo/netbox-landscape.json` reproduit le format de l'API NetBox. Il doit rester fictif :
+aucune organisation, personne ou donnée réelle. Toute évolution du modèle (`lib/landscape.js`,
+`lib/landscapeView.js`) s'accompagne d'un test dans `test/`.
 
-Les schémas Zod dans `lib/schemas/` valident les référentiels JSON. Si vous ajoutez un nouveau format de données, ajoutez ou mettez à jour le schéma correspondant.
+## Style
 
-## Style de code
-
-- Suivre les patterns existants du repo avant d'ajouter une abstraction.
-- Préférer des composants et helpers simples.
-- Garder les textes UI en français tant que l'i18n n'est pas en place.
-- Pour les vues frontend, vérifier les principaux breakpoints desktop/mobile.
+- Textes de l'interface en français, vouvoiement, boutons en verbe d'action.
+- Pas d'information portée par la couleur seule ; vérifier clavier et largeur mobile.
+- Pas de nouvelle dépendance d'interface sans nécessité.
 
 ## Pull requests
 
-Une bonne PR contient :
-
-- un résumé court du changement ;
-- les commandes exécutées (`npm test`, `npm run build`, etc.) ;
-- des captures ou GIFs pour les changements UI ;
-- les limites connues, si la PR reste volontairement partielle.
-
-## Issues utiles pour démarrer
-
-Les issues `good first issue` sont pensées pour être abordables sans connaître toute l'architecture. Elles portent souvent sur la documentation, les tests, l'accessibilité, l'i18n ou de petites améliorations UI.
+Résumé court, commandes exécutées, captures pour les changements d'interface, limites connues.
