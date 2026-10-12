@@ -1,45 +1,28 @@
 {
   "name": "it-landscape",
-  "version": "0.3.0-alpha",
+  "version": "0.4.0-alpha",
   "type": "module",
   "scripts": {
-    "predev": "node scripts/dev-init.mjs",
     "dev": "next dev -p 3000",
     "build": "next build",
     "lint": "next lint",
-    "prestart": "node scripts/startup-security-check.mjs",
     "start": "next start -p 3000",
-    "test": "node test/check-data.cjs && node test/check-access-control.mjs && node test/rbac-audit.mjs && node test/json-file-store.mjs && node test/access-control-runtime.mjs && node test/data-quality.mjs && node test/markdown-reports.mjs && node test/netbox-reconciliation.mjs && node test/startup-security-check.mjs && node test/check-schemas.mjs",
-    "check:trigrammes": "node check-trigrammes.js data",
-    "check:infra-missing-trigramme": "node check-infra-missing-trigramme.js data"
+    "test": "node test/landscape-model.mjs && node test/landscape-view.mjs"
   },
   "dependencies": {
-    "@picocss/pico": "^2.1.1",
-    "@radix-ui/react-slot": "^1.2.3",
-    "bcrypt": "^6.0.0",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "dotenv": "^16.3.2",
-    "exceljs": "^4.4.0",
-    "framer-motion": "^12.23.6",
-    "iron-session": "^8.0.2",
-    "jszip": "^3.10.1",
-    "lucide-react": "^0.525.0",
+    "@fontsource/archivo": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
     "next": "^15.5.18",
-    "next-auth": "^4.24.14",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "shadcn-ui": "^0.9.5",
-    "tailwind-merge": "^3.3.1",
-    "zod": "^4.4.1"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "^9.39.4",
-    "eslint-config-next": "^15.5.15",
-    "prop-types": "^15.8.1"
+    "eslint-config-next": "^15.5.15"
   },
   "overrides": {
     "postcss": ">=8.5.10",
     "uuid": ">=11.1.1"
-  }
+  },
+  "description": "Vue métier du système d'information : paysage applicatif lu dans NetBox (plugin netbox-it-landscape)."
 }

@@ -26,16 +26,6 @@
       "problemMatcher": []
     },
     {
-      "label": "Dev Docker + NetBox",
-      "type": "shell",
-      "command": "make docker-netbox",
-      "presentation": {
-        "reveal": "always",
-        "panel": "new"
-      },
-      "problemMatcher": []
-    },
-    {
       "label": "Arrêter Docker",
       "type": "shell",
       "command": "make docker-stop",

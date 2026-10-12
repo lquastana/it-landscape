@@ -1,24 +1,17 @@
-import fs from 'fs/promises';
-import path from 'path';
-import { getDataDir } from '../../lib/dataPaths.js';
+import { loadLandscape } from '../../lib/landscape.js';
 
+// Vue publique en lecture seule : aucune authentification. Le jeton NetBox reste côté serveur.
 export default async function handler(req, res) {
   if (req.method !== 'GET') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    res.setHeader('Allow', ['GET']);
+    return res.status(405).json({ error: 'Méthode non autorisée' });
   }
   try {
-    const dataDir = getDataDir();
-    const files = (await fs.readdir(dataDir)).filter(
-      f => f.endsWith('.json') && !f.endsWith('.infra.json')
-    );
-    const etablissements = [];
-    for (const file of files) {
-      const content = await fs.readFile(path.join(dataDir, file), 'utf-8');
-      const { etablissements: e = [] } = JSON.parse(content);
-      etablissements.push(...e);
-    }
-    res.status(200).json({ etablissements });
-  } catch {
-    res.status(500).json({ error: 'Erreur lecture JSON' });
+    const landscape = await loadLandscape();
+    res.setHeader('Cache-Control', 'public, max-age=60');
+    return res.status(200).json(landscape);
+  } catch (error) {
+    console.error('[landscape]', error.message);
+    return res.status(502).json({ error: 'La source NetBox est indisponible pour le moment.' });
   }
 }

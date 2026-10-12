@@ -1,115 +1,132 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
-import { motion } from 'framer-motion';
-import Legend from '../components/Legend';
-import MainNav from '../components/MainNav';
-import Filters from '../components/Filters';
-import Cartography from '../components/Cartography';
-import Report from '../components/Report';
-import { useLandscapeData } from '../hooks/useLandscapeData';
-import { LOGO_URL, ORG_NAME, APP_TITLE } from '../lib/branding';
+import { useRouter } from 'next/router';
+import AppHeader from '../components/AppHeader';
+import Summary from '../components/Summary';
+import Toolbar from '../components/Toolbar';
+import LandscapeMap, { LegendStrip } from '../components/LandscapeMap';
+import AppDrawer from '../components/AppDrawer';
+import { APP_TITLE } from '../lib/branding';
+import { EMPTY_FILTERS, buildView } from '../lib/landscapeView';
 
-function formatPct(value) {
-  if (value === undefined || value === null || value === '') return '0%';
-  return `${Number(value).toFixed(Number(value) % 1 === 0 ? 0 : 1)}%`;
+const APP_VERSION = process.env.NEXT_PUBLIC_APP_VERSION || '';
+
+function listParam(value) {
+  const raw = Array.isArray(value) ? value[0] : value;
+  return raw ? raw.split(',').filter(Boolean) : [];
 }
 
-export default function Home() {
-  const { data, sets, filters, updateFilter, interfaceColors, metrics } = useLandscapeData();
-  const [reportVisible, setReportVisible] = useState(false);
-
-  const activeFilters = [
-    filters.etab?.length,
-    filters.domaine?.length,
-    filters.criticite,
-    filters.heberg,
-    filters.interface,
-    filters.multi,
-    filters.search,
-  ].filter(Boolean).length;
-
-  const handleLogout = async () => {
-    await fetch('/api/auth/logout');
-    window.location.href = '/login';
+// Filtres <-> URL (lien partageable)
+function filtersFromQuery(query, model) {
+  const etabSlug = Array.isArray(query.etab) ? query.etab[0] : query.etab;
+  const etab = model?.establishments.find(e => e.slug === etabSlug)?.id ?? null;
+  return {
+    etab,
+    q: typeof query.q === 'string' ? query.q : '',
+    hosting: listParam(query.hebergement),
+    interfaces: listParam(query.interfaces),
+    critical: query.critiques === '1',
+    shared: query.mutualisees === '1',
   };
+}
+
+function queryFromState(filters, appId, model) {
+  const query = {};
+  const etab = model?.establishments.find(e => e.id === filters.etab);
+  if (etab) query.etab = etab.slug;
+  if (filters.q) query.q = filters.q;
+  if (filters.hosting.length) query.hebergement = filters.hosting.join(',');
+  if (filters.interfaces.length) query.interfaces = filters.interfaces.join(',');
+  if (filters.critical) query.critiques = '1';
+  if (filters.shared) query.mutualisees = '1';
+  if (appId) query.app = String(appId);
+  return query;
+}
+
+export default function Paysage() {
+  const router = useRouter();
+  const [model, setModel] = useState(null);
+  const [error, setError] = useState('');
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const [selectedId, setSelectedId] = useState(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch('/api/landscape')
+      .then(async r => {
+        const body = await r.json().catch(() => ({}));
+        if (!r.ok) throw new Error(body.error || `Erreur ${r.status}`);
+        return body;
+      })
+      .then(data => { if (!cancelled) setModel(data); })
+      .catch(e => { if (!cancelled) setError(e.message); });
+    return () => { cancelled = true; };
+  }, []);
+
+  // État initial lu dans l'URL une fois les données chargées
+  useEffect(() => {
+    if (!model || !router.isReady || ready) return;
+    setFilters(filtersFromQuery(router.query, model));
+    const appId = Number.parseInt(router.query.app, 10);
+    if (model.applications.some(a => a.id === appId)) setSelectedId(appId);
+    setReady(true);
+  }, [model, router.isReady, router.query, ready]);
+
+  useEffect(() => {
+    if (!ready) return;
+    router.replace({ pathname: '/', query: queryFromState(filters, selectedId, model) }, undefined, { shallow: true, scroll: false });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filters, selectedId, ready]);
+
+  const view = useMemo(() => (model ? buildView(model, filters) : null), [model, filters]);
+  const selectedApp = useMemo(() => model?.applications.find(a => a.id === selectedId) || null, [model, selectedId]);
+  const closeDrawer = useCallback(() => setSelectedId(null), []);
+
+  const scopeLabel = filters.etab === null
+    ? 'Tous les établissements'
+    : model?.establishments.find(e => e.id === filters.etab)?.name || '';
 
   return (
     <>
       <Head>
-        <title>{APP_TITLE}</title>
-        <meta charSet="UTF-8" />
+        <title>{`Paysage applicatif — ${APP_TITLE}`}</title>
       </Head>
-      <header className="hero business-hero">
-        <div className="page-shell hero-grid">
-          <div className="hero-brand">
-            <div className="brand-mark">
-              {LOGO_URL && <img src={LOGO_URL} alt={ORG_NAME} />}
+
+      <AppHeader
+        model={model}
+        etab={filters.etab}
+        onEtabChange={etab => setFilters(f => ({ ...f, etab }))}
+      />
+
+      {error && (
+        <div className="shell">
+          <p className="notice is-error" role="alert">{error}</p>
+        </div>
+      )}
+
+      {!model && !error && <p className="loading">Chargement du paysage applicatif…</p>}
+
+      {model && view && (
+        <>
+          <Summary model={model} scopeLabel={scopeLabel} indicators={view.indicators} />
+          <Toolbar model={model} filters={filters} onChange={setFilters} visibleCount={view.indicators.applications} />
+          <main className="landscape">
+            <div className="shell">
+              <LegendStrip model={model} />
+              <LandscapeMap view={view} model={model} selectedId={selectedId} onSelect={setSelectedId} />
             </div>
-            <div>
-              <p className="eyebrow">{ORG_NAME}</p>
-              <motion.h1 initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-                {APP_TITLE}
-              </motion.h1>
-              <p className="hero-subtitle">Pilotez les domaines, processus et applications du SIH avec une lecture orientée décision.</p>
-            </div>
-          </div>
-          <MainNav onLogout={handleLogout} />
-        </div>
-      </header>
+          </main>
+          <AppDrawer app={selectedApp} model={model} onClose={closeDrawer} onSelect={setSelectedId} />
+        </>
+      )}
 
-      <section className="business-command-center page-shell">
-        <div className="business-command-intro">
-          <span className="business-section-kicker">Cockpit métier</span>
-          <h2>Vue consolidée du paysage applicatif</h2>
-          <p>
-            Repérez rapidement les applications critiques, les écarts de mutualisation
-            et les zones où le SIH est le plus dense.
-          </p>
+      <footer className="app-footer">
+        <div className="shell">
+          <span>it-landscape{APP_VERSION ? ` ${APP_VERSION}` : ''} · vue métier</span>
+          <span>Infrastructure, réseau et données techniques : NetBox</span>
         </div>
-
-        <div className="business-kpi-grid" aria-label="Indicateurs de synthèse">
-          <article className="business-kpi-card highlight">
-            <span>Applications visibles</span>
-            <strong>{metrics.applications ?? 0}</strong>
-            <em>{activeFilters ? `${activeFilters} filtre(s) actif(s)` : 'Périmètre complet'}</em>
-          </article>
-          <article className="business-kpi-card">
-            <span>Alignement processus</span>
-            <strong>{formatPct(metrics.procPct)}</strong>
-            <em>Similarité inter-établissements</em>
-          </article>
-          <article className="business-kpi-card">
-            <span>Applications mutualisées</span>
-            <strong>{formatPct(metrics.multiPct)}</strong>
-            <em>Potentiel de convergence</em>
-          </article>
-          <article className="business-kpi-card">
-            <span>Complétude référentiel</span>
-            <strong>{formatPct(metrics.complPct)}</strong>
-            <em>Éditeur, référent, supervision</em>
-          </article>
-        </div>
-      </section>
-
-      <section className="legend-wrapper business-filter-panel page-shell">
-        <div className="business-panel-header">
-          <div>
-            <span className="business-section-kicker">Exploration</span>
-            <h2 className="legend-title">Filtres et légende</h2>
-          </div>
-          <button type="button" className="business-report-button" onClick={() => setReportVisible(true)}>
-            Ouvrir la synthèse
-          </button>
-        </div>
-        <Filters sets={sets} filters={filters} onChange={updateFilter} />
-        <Legend colors={interfaceColors} />
-      </section>
-
-      <div className="page-shell business-carto-shell">
-        <Cartography data={data} colors={interfaceColors} search={filters.search} />
-      </div>
-      <Report metrics={metrics} visible={reportVisible} onClose={() => setReportVisible(false)} />
-      <button id="report-toggle" onClick={() => setReportVisible(v => !v)}>Synthèse</button>
+      </footer>
     </>
   );
 }

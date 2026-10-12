@@ -1,0 +1,2425 @@
+{
+ "_comment": "Jeu de démonstration fictif au format de l'API NetBox (plugin netbox-it-landscape).",
+ "labels": {
+  "zone_urbanisation": {
+   "production_soins": "Production de soins",
+   "support": "Support métier",
+   "pilotage": "Pilotage et décisionnel",
+   "echange": "Échanges",
+   "referentiel": "Référentiels",
+   "socle": "Socle technique et sécurité"
+  },
+  "hebergement_type": {
+   "interne": "Interne",
+   "sitec": "Hébergeur régional",
+   "editeur": "Éditeur",
+   "saas": "SaaS",
+   "tiers": "Tiers"
+  }
+ },
+ "domains": [
+  {
+   "id": 101,
+   "name": "Dossier patient",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "DPA",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 102,
+   "name": "Dossier patient",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "DPA",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 103,
+   "name": "Dossier patient",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "DPA",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 104,
+   "name": "Médico-technique",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "MED",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 105,
+   "name": "Médico-technique",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "MED",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 106,
+   "name": "Médico-technique",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "MED",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 107,
+   "name": "Spécialités",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "SPE",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 108,
+   "name": "Spécialités",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "SPE",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 109,
+   "name": "Spécialités",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "SPE",
+    "zone_urbanisation": "production_soins"
+   }
+  },
+  {
+   "id": 110,
+   "name": "Gestion du patient",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "GAP",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 111,
+   "name": "Gestion du patient",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "GAP",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 112,
+   "name": "Gestion du patient",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "GAP",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 113,
+   "name": "Ressources humaines",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "RHU",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 114,
+   "name": "Ressources humaines",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "RHU",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 115,
+   "name": "Ressources humaines",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "RHU",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 116,
+   "name": "Logistique",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "LOG",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 117,
+   "name": "Logistique",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "LOG",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 118,
+   "name": "Logistique",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "LOG",
+    "zone_urbanisation": "support"
+   }
+  },
+  {
+   "id": 119,
+   "name": "Pilotage",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "PIL",
+    "zone_urbanisation": "pilotage"
+   }
+  },
+  {
+   "id": 120,
+   "name": "Pilotage",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "PIL",
+    "zone_urbanisation": "pilotage"
+   }
+  },
+  {
+   "id": 121,
+   "name": "Pilotage",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "PIL",
+    "zone_urbanisation": "pilotage"
+   }
+  },
+  {
+   "id": 122,
+   "name": "Échanges",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "ECH",
+    "zone_urbanisation": "echange"
+   }
+  },
+  {
+   "id": 123,
+   "name": "Échanges",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "ECH",
+    "zone_urbanisation": "echange"
+   }
+  },
+  {
+   "id": 124,
+   "name": "Échanges",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "ECH",
+    "zone_urbanisation": "echange"
+   }
+  },
+  {
+   "id": 125,
+   "name": "Socle",
+   "description": "",
+   "site": {
+    "id": 1,
+    "name": "Hôpital Nord",
+    "slug": "hopital-nord"
+   },
+   "custom_fields": {
+    "code": "SOC",
+    "zone_urbanisation": "socle"
+   }
+  },
+  {
+   "id": 126,
+   "name": "Socle",
+   "description": "",
+   "site": {
+    "id": 2,
+    "name": "Hôpital Sud",
+    "slug": "hopital-sud"
+   },
+   "custom_fields": {
+    "code": "SOC",
+    "zone_urbanisation": "socle"
+   }
+  },
+  {
+   "id": 127,
+   "name": "Socle",
+   "description": "",
+   "site": {
+    "id": 3,
+    "name": "Centre de rééducation",
+    "slug": "centre-reeducation"
+   },
+   "custom_fields": {
+    "code": "SOC",
+    "zone_urbanisation": "socle"
+   }
+  }
+ ],
+ "processes": [
+  {
+   "id": 1001,
+   "name": "Dossier de soins",
+   "description": "",
+   "domain": {
+    "id": 101,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-01"
+   }
+  },
+  {
+   "id": 1002,
+   "name": "Prescription",
+   "description": "",
+   "domain": {
+    "id": 101,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-02"
+   }
+  },
+  {
+   "id": 1003,
+   "name": "Urgences",
+   "description": "",
+   "domain": {
+    "id": 101,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-03"
+   }
+  },
+  {
+   "id": 1004,
+   "name": "Dossier de soins",
+   "description": "",
+   "domain": {
+    "id": 102,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-01"
+   }
+  },
+  {
+   "id": 1005,
+   "name": "Prescription",
+   "description": "",
+   "domain": {
+    "id": 102,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-02"
+   }
+  },
+  {
+   "id": 1006,
+   "name": "Urgences",
+   "description": "",
+   "domain": {
+    "id": 102,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-03"
+   }
+  },
+  {
+   "id": 1007,
+   "name": "Dossier de soins",
+   "description": "",
+   "domain": {
+    "id": 103,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-01"
+   }
+  },
+  {
+   "id": 1008,
+   "name": "Prescription",
+   "description": "",
+   "domain": {
+    "id": 103,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-02"
+   }
+  },
+  {
+   "id": 1009,
+   "name": "Urgences",
+   "description": "",
+   "domain": {
+    "id": 103,
+    "name": "Dossier patient"
+   },
+   "custom_fields": {
+    "code": "DPA-03"
+   }
+  },
+  {
+   "id": 1010,
+   "name": "Laboratoire",
+   "description": "",
+   "domain": {
+    "id": 104,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-01"
+   }
+  },
+  {
+   "id": 1011,
+   "name": "Imagerie",
+   "description": "",
+   "domain": {
+    "id": 104,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-02"
+   }
+  },
+  {
+   "id": 1012,
+   "name": "Pharmacie",
+   "description": "",
+   "domain": {
+    "id": 104,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-03"
+   }
+  },
+  {
+   "id": 1013,
+   "name": "Bloc opératoire",
+   "description": "",
+   "domain": {
+    "id": 104,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-04"
+   }
+  },
+  {
+   "id": 1014,
+   "name": "Laboratoire",
+   "description": "",
+   "domain": {
+    "id": 105,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-01"
+   }
+  },
+  {
+   "id": 1015,
+   "name": "Imagerie",
+   "description": "",
+   "domain": {
+    "id": 105,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-02"
+   }
+  },
+  {
+   "id": 1016,
+   "name": "Pharmacie",
+   "description": "",
+   "domain": {
+    "id": 105,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-03"
+   }
+  },
+  {
+   "id": 1017,
+   "name": "Bloc opératoire",
+   "description": "",
+   "domain": {
+    "id": 105,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-04"
+   }
+  },
+  {
+   "id": 1018,
+   "name": "Laboratoire",
+   "description": "",
+   "domain": {
+    "id": 106,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-01"
+   }
+  },
+  {
+   "id": 1019,
+   "name": "Pharmacie",
+   "description": "",
+   "domain": {
+    "id": 106,
+    "name": "Médico-technique"
+   },
+   "custom_fields": {
+    "code": "MED-03"
+   }
+  },
+  {
+   "id": 1020,
+   "name": "Dialyse",
+   "description": "",
+   "domain": {
+    "id": 107,
+    "name": "Spécialités"
+   },
+   "custom_fields": {
+    "code": "SPE-01"
+   }
+  },
+  {
+   "id": 1021,
+   "name": "Oncologie",
+   "description": "",
+   "domain": {
+    "id": 107,
+    "name": "Spécialités"
+   },
+   "custom_fields": {
+    "code": "SPE-02"
+   }
+  },
+  {
+   "id": 1022,
+   "name": "Dialyse",
+   "description": "",
+   "domain": {
+    "id": 108,
+    "name": "Spécialités"
+   },
+   "custom_fields": {
+    "code": "SPE-01"
+   }
+  },
+  {
+   "id": 1023,
+   "name": "Oncologie",
+   "description": "",
+   "domain": {
+    "id": 108,
+    "name": "Spécialités"
+   },
+   "custom_fields": {
+    "code": "SPE-02"
+   }
+  },
+  {
+   "id": 1024,
+   "name": "Rééducation",
+   "description": "",
+   "domain": {
+    "id": 109,
+    "name": "Spécialités"
+   },
+   "custom_fields": {
+    "code": "SPE-03"
+   }
+  },
+  {
+   "id": 1025,
+   "name": "Admissions",
+   "description": "",
+   "domain": {
+    "id": 110,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-01"
+   }
+  },
+  {
+   "id": 1026,
+   "name": "Facturation",
+   "description": "",
+   "domain": {
+    "id": 110,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-02"
+   }
+  },
+  {
+   "id": 1027,
+   "name": "Admissions",
+   "description": "",
+   "domain": {
+    "id": 111,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-01"
+   }
+  },
+  {
+   "id": 1028,
+   "name": "Facturation",
+   "description": "",
+   "domain": {
+    "id": 111,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-02"
+   }
+  },
+  {
+   "id": 1029,
+   "name": "Admissions",
+   "description": "",
+   "domain": {
+    "id": 112,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-01"
+   }
+  },
+  {
+   "id": 1030,
+   "name": "Facturation",
+   "description": "",
+   "domain": {
+    "id": 112,
+    "name": "Gestion du patient"
+   },
+   "custom_fields": {
+    "code": "GAP-02"
+   }
+  },
+  {
+   "id": 1031,
+   "name": "Paie",
+   "description": "",
+   "domain": {
+    "id": 113,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-01"
+   }
+  },
+  {
+   "id": 1032,
+   "name": "Planning des équipes",
+   "description": "",
+   "domain": {
+    "id": 113,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-02"
+   }
+  },
+  {
+   "id": 1033,
+   "name": "Formation",
+   "description": "",
+   "domain": {
+    "id": 113,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-03"
+   }
+  },
+  {
+   "id": 1034,
+   "name": "Paie",
+   "description": "",
+   "domain": {
+    "id": 114,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-01"
+   }
+  },
+  {
+   "id": 1035,
+   "name": "Planning des équipes",
+   "description": "",
+   "domain": {
+    "id": 114,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-02"
+   }
+  },
+  {
+   "id": 1036,
+   "name": "Formation",
+   "description": "",
+   "domain": {
+    "id": 114,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-03"
+   }
+  },
+  {
+   "id": 1037,
+   "name": "Paie",
+   "description": "",
+   "domain": {
+    "id": 115,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-01"
+   }
+  },
+  {
+   "id": 1038,
+   "name": "Planning des équipes",
+   "description": "",
+   "domain": {
+    "id": 115,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-02"
+   }
+  },
+  {
+   "id": 1039,
+   "name": "Formation",
+   "description": "",
+   "domain": {
+    "id": 115,
+    "name": "Ressources humaines"
+   },
+   "custom_fields": {
+    "code": "RHU-03"
+   }
+  },
+  {
+   "id": 1040,
+   "name": "Achats et stocks",
+   "description": "",
+   "domain": {
+    "id": 116,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-01"
+   }
+  },
+  {
+   "id": 1041,
+   "name": "Restauration",
+   "description": "",
+   "domain": {
+    "id": 116,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-02"
+   }
+  },
+  {
+   "id": 1042,
+   "name": "Biomédical",
+   "description": "",
+   "domain": {
+    "id": 116,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-03"
+   }
+  },
+  {
+   "id": 1043,
+   "name": "Achats et stocks",
+   "description": "",
+   "domain": {
+    "id": 117,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-01"
+   }
+  },
+  {
+   "id": 1044,
+   "name": "Restauration",
+   "description": "",
+   "domain": {
+    "id": 117,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-02"
+   }
+  },
+  {
+   "id": 1045,
+   "name": "Biomédical",
+   "description": "",
+   "domain": {
+    "id": 117,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-03"
+   }
+  },
+  {
+   "id": 1046,
+   "name": "Achats et stocks",
+   "description": "",
+   "domain": {
+    "id": 118,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-01"
+   }
+  },
+  {
+   "id": 1047,
+   "name": "Restauration",
+   "description": "",
+   "domain": {
+    "id": 118,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-02"
+   }
+  },
+  {
+   "id": 1048,
+   "name": "Biomédical",
+   "description": "",
+   "domain": {
+    "id": 118,
+    "name": "Logistique"
+   },
+   "custom_fields": {
+    "code": "LOG-03"
+   }
+  },
+  {
+   "id": 1049,
+   "name": "Codage PMSI",
+   "description": "",
+   "domain": {
+    "id": 119,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-01"
+   }
+  },
+  {
+   "id": 1050,
+   "name": "Décisionnel",
+   "description": "",
+   "domain": {
+    "id": 119,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-02"
+   }
+  },
+  {
+   "id": 1051,
+   "name": "Qualité et risques",
+   "description": "",
+   "domain": {
+    "id": 119,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-03"
+   }
+  },
+  {
+   "id": 1052,
+   "name": "Codage PMSI",
+   "description": "",
+   "domain": {
+    "id": 120,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-01"
+   }
+  },
+  {
+   "id": 1053,
+   "name": "Décisionnel",
+   "description": "",
+   "domain": {
+    "id": 120,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-02"
+   }
+  },
+  {
+   "id": 1054,
+   "name": "Qualité et risques",
+   "description": "",
+   "domain": {
+    "id": 120,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-03"
+   }
+  },
+  {
+   "id": 1055,
+   "name": "Codage PMSI",
+   "description": "",
+   "domain": {
+    "id": 121,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-01"
+   }
+  },
+  {
+   "id": 1056,
+   "name": "Décisionnel",
+   "description": "",
+   "domain": {
+    "id": 121,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-02"
+   }
+  },
+  {
+   "id": 1057,
+   "name": "Qualité et risques",
+   "description": "",
+   "domain": {
+    "id": 121,
+    "name": "Pilotage"
+   },
+   "custom_fields": {
+    "code": "PIL-03"
+   }
+  },
+  {
+   "id": 1058,
+   "name": "Intégration",
+   "description": "",
+   "domain": {
+    "id": 122,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-01"
+   }
+  },
+  {
+   "id": 1059,
+   "name": "Messagerie sécurisée",
+   "description": "",
+   "domain": {
+    "id": 122,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-02"
+   }
+  },
+  {
+   "id": 1060,
+   "name": "Intégration",
+   "description": "",
+   "domain": {
+    "id": 123,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-01"
+   }
+  },
+  {
+   "id": 1061,
+   "name": "Messagerie sécurisée",
+   "description": "",
+   "domain": {
+    "id": 123,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-02"
+   }
+  },
+  {
+   "id": 1062,
+   "name": "Intégration",
+   "description": "",
+   "domain": {
+    "id": 124,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-01"
+   }
+  },
+  {
+   "id": 1063,
+   "name": "Messagerie sécurisée",
+   "description": "",
+   "domain": {
+    "id": 124,
+    "name": "Échanges"
+   },
+   "custom_fields": {
+    "code": "ECH-02"
+   }
+  },
+  {
+   "id": 1064,
+   "name": "Identités et accès",
+   "description": "",
+   "domain": {
+    "id": 125,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-01"
+   }
+  },
+  {
+   "id": 1065,
+   "name": "Supervision",
+   "description": "",
+   "domain": {
+    "id": 125,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-02"
+   }
+  },
+  {
+   "id": 1066,
+   "name": "Identités et accès",
+   "description": "",
+   "domain": {
+    "id": 126,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-01"
+   }
+  },
+  {
+   "id": 1067,
+   "name": "Supervision",
+   "description": "",
+   "domain": {
+    "id": 126,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-02"
+   }
+  },
+  {
+   "id": 1068,
+   "name": "Identités et accès",
+   "description": "",
+   "domain": {
+    "id": 127,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-01"
+   }
+  },
+  {
+   "id": 1069,
+   "name": "Supervision",
+   "description": "",
+   "domain": {
+    "id": 127,
+    "name": "Socle"
+   },
+   "custom_fields": {
+    "code": "SOC-02"
+   }
+  }
+ ],
+ "applications": [
+  {
+   "id": 1,
+   "name": "Dossier Patient Clinique",
+   "description": "Dossier patient informatisé : observations, prescriptions, plan de soins.",
+   "editor": "Éditeur Alpha",
+   "referent": "Référent métier 1",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1001,
+     "name": "Dossier de soins"
+    },
+    {
+     "id": 1002,
+     "name": "Prescription"
+    },
+    {
+     "id": 1004,
+     "name": "Dossier de soins"
+    },
+    {
+     "id": 1005,
+     "name": "Prescription"
+    },
+    {
+     "id": 1007,
+     "name": "Dossier de soins"
+    },
+    {
+     "id": 1008,
+     "name": "Prescription"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": true,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 2,
+   "name": "Urgences Plus",
+   "description": "Gestion du parcours aux urgences.",
+   "editor": "Éditeur Alpha",
+   "referent": "Référent métier 2",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1003,
+     "name": "Urgences"
+    },
+    {
+     "id": 1006,
+     "name": "Urgences"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 3,
+   "name": "Accueil Patient",
+   "description": "Gestion administrative du patient : identité, mouvements.",
+   "editor": "Santé Logiciels",
+   "referent": "Référent métier 3",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1025,
+     "name": "Admissions"
+    },
+    {
+     "id": 1027,
+     "name": "Admissions"
+    },
+    {
+     "id": 1029,
+     "name": "Admissions"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": true
+  },
+  {
+   "id": 4,
+   "name": "Facturation Patient",
+   "description": "Facturation des séjours et consultations.",
+   "editor": "Santé Logiciels",
+   "referent": "",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1026,
+     "name": "Facturation"
+    },
+    {
+     "id": 1028,
+     "name": "Facturation"
+    },
+    {
+     "id": 1030,
+     "name": "Facturation"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 5,
+   "name": "LabExpert",
+   "description": "Système de gestion du laboratoire de biologie.",
+   "editor": "BioSystèmes",
+   "referent": "Référent métier 5",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1010,
+     "name": "Laboratoire"
+    },
+    {
+     "id": 1014,
+     "name": "Laboratoire"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 6,
+   "name": "Analyses Externes",
+   "description": "Portail de résultats du laboratoire sous-traitant.",
+   "editor": "Laboratoire partenaire",
+   "referent": "Référent métier 6",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1018,
+     "name": "Laboratoire"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 7,
+   "name": "RIS Imagerie",
+   "description": "Gestion du service d'imagerie : rendez-vous, comptes rendus.",
+   "editor": "Imagix",
+   "referent": "Référent métier 7",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1011,
+     "name": "Imagerie"
+    },
+    {
+     "id": 1015,
+     "name": "Imagerie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 8,
+   "name": "PACS Vision",
+   "description": "Archivage et diffusion des images médicales.",
+   "editor": "Imagix",
+   "referent": "",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1011,
+     "name": "Imagerie"
+    },
+    {
+     "id": 1015,
+     "name": "Imagerie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 9,
+   "name": "PharmaFlow",
+   "description": "Circuit du médicament et gestion de la pharmacie.",
+   "editor": "Circuit Médicament",
+   "referent": "Référent métier 9",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1012,
+     "name": "Pharmacie"
+    },
+    {
+     "id": 1016,
+     "name": "Pharmacie"
+    },
+    {
+     "id": 1019,
+     "name": "Pharmacie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 10,
+   "name": "Armoires Pharma",
+   "description": "Armoires sécurisées de distribution.",
+   "editor": "Distrib Santé",
+   "referent": "Référent métier 10",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1012,
+     "name": "Pharmacie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 11,
+   "name": "BlocPlan",
+   "description": "Programmation et traçabilité du bloc opératoire.",
+   "editor": "Éditeur Alpha",
+   "referent": "Référent métier 11",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1013,
+     "name": "Bloc opératoire"
+    },
+    {
+     "id": 1017,
+     "name": "Bloc opératoire"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 12,
+   "name": "DialyNet",
+   "description": "Suivi des séances de dialyse.",
+   "editor": "Néphro Soft",
+   "referent": "",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1020,
+     "name": "Dialyse"
+    },
+    {
+     "id": 1022,
+     "name": "Dialyse"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 13,
+   "name": "Onco Parcours",
+   "description": "Coordination des parcours en oncologie.",
+   "editor": "Onco Solutions",
+   "referent": "Référent métier 13",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1021,
+     "name": "Oncologie"
+    },
+    {
+     "id": 1023,
+     "name": "Oncologie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 14,
+   "name": "RééducaPlan",
+   "description": "Planification des séances de rééducation.",
+   "editor": "Mouvement Santé",
+   "referent": "Référent métier 14",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1024,
+     "name": "Rééducation"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 15,
+   "name": "Paie RH",
+   "description": "Gestion de la paie et du dossier agent.",
+   "editor": "GRH Public",
+   "referent": "Référent métier 15",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1031,
+     "name": "Paie"
+    },
+    {
+     "id": 1034,
+     "name": "Paie"
+    },
+    {
+     "id": 1037,
+     "name": "Paie"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 16,
+   "name": "Planning Soignants",
+   "description": "Gestion des temps et plannings.",
+   "editor": "GRH Public",
+   "referent": "",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1032,
+     "name": "Planning des équipes"
+    },
+    {
+     "id": 1035,
+     "name": "Planning des équipes"
+    },
+    {
+     "id": 1038,
+     "name": "Planning des équipes"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 17,
+   "name": "Formation Plus",
+   "description": "Plan de formation et inscriptions.",
+   "editor": "Campus Santé",
+   "referent": "Référent métier 17",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1033,
+     "name": "Formation"
+    },
+    {
+     "id": 1036,
+     "name": "Formation"
+    },
+    {
+     "id": 1039,
+     "name": "Formation"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 18,
+   "name": "Achats Stocks",
+   "description": "Gestion économique et financière : achats, stocks, inventaire.",
+   "editor": "GEF Public",
+   "referent": "Référent métier 18",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1040,
+     "name": "Achats et stocks"
+    },
+    {
+     "id": 1043,
+     "name": "Achats et stocks"
+    },
+    {
+     "id": 1046,
+     "name": "Achats et stocks"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "editeur",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 19,
+   "name": "Restauration",
+   "description": "Commande et production des repas.",
+   "editor": "Cuisine Pro",
+   "referent": "Référent métier 19",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1041,
+     "name": "Restauration"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 20,
+   "name": "Repas Sud",
+   "description": "Commande des repas des sites Sud et rééducation.",
+   "editor": "Cuisine Pro",
+   "referent": "",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1044,
+     "name": "Restauration"
+    },
+    {
+     "id": 1047,
+     "name": "Restauration"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": true,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 21,
+   "name": "GMAO Biomed",
+   "description": "Maintenance des équipements biomédicaux.",
+   "editor": "Maintenance Soft",
+   "referent": "Référent métier 21",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1042,
+     "name": "Biomédical"
+    },
+    {
+     "id": 1045,
+     "name": "Biomédical"
+    },
+    {
+     "id": 1048,
+     "name": "Biomédical"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": true
+  },
+  {
+   "id": 22,
+   "name": "Codage PMSI",
+   "description": "Codage et contrôle qualité du PMSI.",
+   "editor": "PMSI Expert",
+   "referent": "Référent métier 22",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1049,
+     "name": "Codage PMSI"
+    },
+    {
+     "id": 1052,
+     "name": "Codage PMSI"
+    },
+    {
+     "id": 1055,
+     "name": "Codage PMSI"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": true,
+   "interface_autre": false
+  },
+  {
+   "id": 23,
+   "name": "Infocentre",
+   "description": "Tableaux de bord et requêteur.",
+   "editor": "Décision Santé",
+   "referent": "Référent métier 23",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1050,
+     "name": "Décisionnel"
+    },
+    {
+     "id": 1053,
+     "name": "Décisionnel"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 24,
+   "name": "Déclarations Qualité",
+   "description": "Signalement des événements indésirables.",
+   "editor": "Qualité Soft",
+   "referent": "",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1051,
+     "name": "Qualité et risques"
+    },
+    {
+     "id": 1054,
+     "name": "Qualité et risques"
+    },
+    {
+     "id": 1057,
+     "name": "Qualité et risques"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 25,
+   "name": "Hub Interop",
+   "description": "Plateforme d'échanges entre applications.",
+   "editor": "Intégra",
+   "referent": "Référent métier 25",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1058,
+     "name": "Intégration"
+    },
+    {
+     "id": 1060,
+     "name": "Intégration"
+    },
+    {
+     "id": 1062,
+     "name": "Intégration"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "sitec",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": true,
+   "interface_planification": true,
+   "interface_facturation": true,
+   "interface_autre": true
+  },
+  {
+   "id": 26,
+   "name": "Messagerie Santé",
+   "description": "Messagerie sécurisée de santé.",
+   "editor": "Opérateur MSS",
+   "referent": "Référent métier 26",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1059,
+     "name": "Messagerie sécurisée"
+    },
+    {
+     "id": 1061,
+     "name": "Messagerie sécurisée"
+    },
+    {
+     "id": 1063,
+     "name": "Messagerie sécurisée"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "actif"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 27,
+   "name": "Annuaire Identités",
+   "description": "Annuaire et authentification unique.",
+   "editor": "Annuaire Pro",
+   "referent": "Référent métier 27",
+   "hosting": "",
+   "criticality": "critical",
+   "processes": [
+    {
+     "id": 1064,
+     "name": "Identités et accès"
+    },
+    {
+     "id": 1066,
+     "name": "Identités et accès"
+    },
+    {
+     "id": 1068,
+     "name": "Identités et accès"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": true
+  },
+  {
+   "id": 28,
+   "name": "Supervision SI",
+   "description": "Supervision des serveurs et des applications.",
+   "editor": "Monitor",
+   "referent": "",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1065,
+     "name": "Supervision"
+    },
+    {
+     "id": 1067,
+     "name": "Supervision"
+    },
+    {
+     "id": 1069,
+     "name": "Supervision"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "actif"
+   },
+   "interface_medicale": false,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": true
+  },
+  {
+   "id": 29,
+   "name": "Téléconsultation",
+   "description": "Téléconsultation, en cours de déploiement.",
+   "editor": "Visio Santé",
+   "referent": "Référent métier 29",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1004,
+     "name": "Dossier de soins"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "saas",
+    "statut": "projet"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": true,
+   "interface_facturation": false,
+   "interface_autre": false
+  },
+  {
+   "id": 30,
+   "name": "Ancien Labo",
+   "description": "Ancienne version, arrêtée.",
+   "editor": "BioSystèmes",
+   "referent": "Référent métier 30",
+   "hosting": "",
+   "criticality": "standard",
+   "processes": [
+    {
+     "id": 1010,
+     "name": "Laboratoire"
+    }
+   ],
+   "custom_fields": {
+    "hebergement_type": "interne",
+    "statut": "decommissionne"
+   },
+   "interface_medicale": true,
+   "interface_administrative": false,
+   "interface_planification": false,
+   "interface_facturation": false,
+   "interface_autre": false
+  }
+ ],
+ "flows": [
+  {
+   "id": 1,
+   "source": {
+    "id": 3,
+    "name": "Accueil Patient"
+   },
+   "target": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 2,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 1,
+    "name": "Dossier Patient Clinique"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 3,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 5,
+    "name": "LabExpert"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 4,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 7,
+    "name": "RIS Imagerie"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 5,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 9,
+    "name": "PharmaFlow"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 6,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 2,
+    "name": "Urgences Plus"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 7,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 12,
+    "name": "DialyNet"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 8,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 11,
+    "name": "BlocPlan"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 9,
+   "source": {
+    "id": 5,
+    "name": "LabExpert"
+   },
+   "target": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 10,
+   "source": {
+    "id": 7,
+    "name": "RIS Imagerie"
+   },
+   "target": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 11,
+   "source": {
+    "id": 7,
+    "name": "RIS Imagerie"
+   },
+   "target": {
+    "id": 8,
+    "name": "PACS Vision"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 12,
+   "source": {
+    "id": 1,
+    "name": "Dossier Patient Clinique"
+   },
+   "target": {
+    "id": 9,
+    "name": "PharmaFlow"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 13,
+   "source": {
+    "id": 1,
+    "name": "Dossier Patient Clinique"
+   },
+   "target": {
+    "id": 22,
+    "name": "Codage PMSI"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 14,
+   "source": {
+    "id": 22,
+    "name": "Codage PMSI"
+   },
+   "target": {
+    "id": 4,
+    "name": "Facturation Patient"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 15,
+   "source": {
+    "id": 3,
+    "name": "Accueil Patient"
+   },
+   "target": {
+    "id": 4,
+    "name": "Facturation Patient"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 16,
+   "source": {
+    "id": 9,
+    "name": "PharmaFlow"
+   },
+   "target": {
+    "id": 18,
+    "name": "Achats Stocks"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 17,
+   "source": {
+    "id": 18,
+    "name": "Achats Stocks"
+   },
+   "target": {
+    "id": 9,
+    "name": "PharmaFlow"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 18,
+   "source": {
+    "id": 15,
+    "name": "Paie RH"
+   },
+   "target": {
+    "id": 16,
+    "name": "Planning Soignants"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 19,
+   "source": {
+    "id": 27,
+    "name": "Annuaire Identités"
+   },
+   "target": {
+    "id": 15,
+    "name": "Paie RH"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 20,
+   "source": {
+    "id": 1,
+    "name": "Dossier Patient Clinique"
+   },
+   "target": {
+    "id": 26,
+    "name": "Messagerie Santé"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 21,
+   "source": {
+    "id": 3,
+    "name": "Accueil Patient"
+   },
+   "target": {
+    "id": 19,
+    "name": "Restauration"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 22,
+   "source": {
+    "id": 25,
+    "name": "Hub Interop"
+   },
+   "target": {
+    "id": 13,
+    "name": "Onco Parcours"
+   },
+   "tags": [],
+   "custom_fields": {}
+  },
+  {
+   "id": 23,
+   "source": {
+    "id": 30,
+    "name": "Ancien Labo"
+   },
+   "target": {
+    "id": 1,
+    "name": "Dossier Patient Clinique"
+   },
+   "tags": [
+    {
+     "slug": "flux-non-active"
+    }
+   ],
+   "custom_fields": {}
+  }
+ ]
+}

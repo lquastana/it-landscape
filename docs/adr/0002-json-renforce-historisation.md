@@ -1,7 +1,7 @@
 # ADR-0002: JSON renforce et historisation
 
 ## Statut
-Acceptee.
+Remplacée par [ADR 0003](0003-vue-metier-netbox.md) (version 0.4) : plus d'écriture JSON dans l'application.
 
 ## Contexte
 ADR-0001 retient les fichiers JSON pour garder un deploiement simple et portable.
