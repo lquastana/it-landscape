@@ -22,24 +22,23 @@ Utilisez en priorité les GitHub Security Advisories du dépôt. Si ce canal n'e
 - la version, le commit ou l'environnement concerné ;
 - tout contournement connu.
 
-Nous accusons réception dès que possible et priorisons les failles touchant l'authentification, les rôles, les exports, les secrets, les données de santé ou la chaîne de déploiement.
+Nous accusons réception dès que possible et priorisons les failles touchant l'exposition de données au-delà du paysage métier, le jeton NetBox, ou la chaîne de déploiement.
 
 ## Périmètre sensible
 
 Les zones suivantes demandent une attention particulière :
 
-- `lib/authOptions.js`, `middleware.js`, `lib/authz.js` et `lib/accessControl.js` ;
-- `pages/api/landscape.js` et la lecture NetBox (`lib/landscape.js`) ;
-- `scripts/startup-security-check.mjs` ;
-- les fichiers `data/auth/*.json` ;
-- les variables d'environnement, en particulier le jeton NetBox.
+- `pages/api/landscape.js` et la lecture NetBox (`lib/landscape.js`) : rien de plus que le
+  paysage métier ne doit être exposé (la vue est publique) ;
+- les variables d'environnement, en particulier le jeton NetBox ;
+- la chaîne de build et l'image Docker.
 
 ## Secrets et données
 
 Ne commitez jamais :
 
 - fichiers `.env`, `.env.local`, `.env.production` ;
-- tokens NetBox, secrets NextAuth, secrets Azure AD / Entra ID ;
+- jetons NetBox ;
 - exports contenant des données réelles ;
 - informations patient, agent ou établissement non autorisées.
 

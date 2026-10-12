@@ -1,34 +1,30 @@
 name: it-landscape-prod
+# Vue publique en lecture seule : aucun volume, aucun secret hors du jeton NetBox (lecture seule).
+# Les NEXT_PUBLIC_* (habillage) sont lus au build : les définir dans .env avant `up --build`.
 
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_LOGO_URL: ${NEXT_PUBLIC_LOGO_URL:-/it-landscape-logo.png}
+        NEXT_PUBLIC_ORG_NAME: ${NEXT_PUBLIC_ORG_NAME:-}
+        NEXT_PUBLIC_APP_TITLE: ${NEXT_PUBLIC_APP_TITLE:-Cartographie du Système d'Information}
     image: ${IT_LANDSCAPE_IMAGE:-it-landscape:prod}
     restart: unless-stopped
     ports:
       - "${IT_LANDSCAPE_HTTP_BIND:-127.0.0.1:3000}:3000"
-    volumes:
-      # Seuls les comptes locaux sont persistés ; les données métier viennent de NetBox.
-      - auth:/app/data/auth
     environment:
       NODE_ENV: production
-      IT_LANDSCAPE_ENV: production
       NEXT_TELEMETRY_DISABLED: "1"
-      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?NEXTAUTH_SECRET is required in production}
-      NEXTAUTH_URL: ${NEXTAUTH_URL:?NEXTAUTH_URL is required in production}
-      AUTH_ENABLED: "true"
       NETBOX_URL: ${NETBOX_URL:?NETBOX_URL is required in production}
       NETBOX_TOKEN: ${NETBOX_TOKEN:?NETBOX_TOKEN is required in production}
       NETBOX_PUBLIC_URL: ${NETBOX_PUBLIC_URL:-}
       LANDSCAPE_CACHE_SECONDS: ${LANDSCAPE_CACHE_SECONDS:-120}
-      AZURE_AD_CLIENT_ID: ${AZURE_AD_CLIENT_ID:-}
-      AZURE_AD_CLIENT_SECRET: ${AZURE_AD_CLIENT_SECRET:-}
-      AZURE_AD_TENANT_ID: ${AZURE_AD_TENANT_ID:-}
+    read_only: true
+    tmpfs:
+      - /app/.next/cache
     security_opt:
       - no-new-privileges:true
     cap_drop:
       - ALL
-
-volumes:
-  auth:
-    name: it-landscape-prod_auth

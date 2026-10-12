@@ -1,6 +1,6 @@
 import { LOGO_URL, ORG_NAME, APP_TITLE } from '../lib/branding';
 
-export default function AppHeader({ model, etab, onEtabChange, user, onLogout }) {
+export default function AppHeader({ model, etab, onEtabChange }) {
   const establishments = model?.establishments || [];
   return (
     <header className="app-header">
@@ -8,7 +8,7 @@ export default function AppHeader({ model, etab, onEtabChange, user, onLogout })
         <div className="brand">
           {/* Logo configurable, éventuellement hors domaine : <img> volontaire */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {LOGO_URL && <img src={LOGO_URL} alt="" />}
+          {LOGO_URL && <img src={LOGO_URL} alt={ORG_NAME || 'Logo'} />}
           <div className="brand-text">
             {ORG_NAME && <span className="brand-org">{ORG_NAME}</span>}
             <h1 className="brand-title">{APP_TITLE}</h1>
@@ -27,14 +27,6 @@ export default function AppHeader({ model, etab, onEtabChange, user, onLogout })
             ))}
           </nav>
         )}
-
-        <div className="header-right">
-          {user && (
-            <button type="button" className="btn btn-ghost btn-small" onClick={onLogout} title={`Connecté : ${user.username}`}>
-              Se déconnecter
-            </button>
-          )}
-        </div>
       </div>
     </header>
   );

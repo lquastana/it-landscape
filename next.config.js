@@ -5,7 +5,7 @@ const { version } = JSON.parse(readFileSync(new URL('./package.json', import.met
 // Anciennes pages (versions ≤ 0.3) : la vue technique vit désormais dans NetBox.
 const RETIRED_PAGES = [
   '/applications', '/flux', '/network', '/quality', '/incident', '/incidents', '/simulation',
-  '/simulation-incident', '/netbox-reconciliation', '/unauthorized',
+  '/simulation-incident', '/netbox-reconciliation', '/unauthorized', '/login',
   '/admin-metier', '/admin-flux', '/admin-infra', '/admin-trigramme', '/admin-habilitations', '/admin-netbox-reconciliation',
 ];
 

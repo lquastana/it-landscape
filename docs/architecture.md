@@ -7,7 +7,7 @@ NetBox + plugin netbox-it-landscape
 lib/landscape.js        lecture paginée, jointure domaines / processus / applications / flux,
    │                    libellés des choice sets, cache serveur, repli démo
    ▼
-GET /api/landscape      route protégée (session NextAuth)
+GET /api/landscape      route publique en lecture (aucune authentification)
    │  modèle « paysage » JSON
    ▼
 pages/index.js          vue Paysage : périmètre établissement, filtres, URL partageable
@@ -28,10 +28,10 @@ components/             en-tête, synthèse, filtres, carte du paysage, fiche ap
 
 ## Choix
 
-- **Pages Router Next.js**, rendu client de la vue (les données arrivent par l'API protégée).
+- **Pages Router Next.js**, rendu client de la vue (les données arrivent par l'API).
 - **Aucune dépendance d'interface** : CSS maison (`styles/app.css`), polices auto-hébergées
   (`@fontsource`), pas de bibliothèque de composants ni d'animation.
 - **Accessibilité** : une information portée par une couleur l'est aussi par un texte
   (`aria-label`, `title`, légende) ; navigation au clavier, `Échap` ferme la fiche.
-- **Sécurité** : en-têtes `nosniff`, `DENY`, `same-origin` ; contrôle de configuration au
-  démarrage en production ; jeton NetBox uniquement côté serveur.
+- **Sécurité** : vue publique sans authentification (restriction éventuelle au reverse proxy) ;
+  en-têtes `nosniff`, `DENY`, `same-origin` ; jeton NetBox uniquement côté serveur.

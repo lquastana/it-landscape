@@ -21,10 +21,13 @@ et la richesse fonctionnelle rendait l'outil difficile à lire pour un public no
    outillés) et fiche application avec lien vers NetBox.
 3. Infrastructure, réseau, flux détaillés et administration restent dans NetBox.
 4. Un jeu de démonstration au format de l'API NetBox remplace les fichiers JSON d'exemple.
+5. La vue est publique : plus d'authentification (NextAuth, comptes locaux, SSO retirés).
+   Une restriction d'accès, si nécessaire, se fait au reverse proxy.
 
 ## Conséquences
 
 - Plus de double saisie ; la vue est toujours à jour (cache serveur de 2 minutes par défaut).
 - Suppression des écrans d'administration, de l'historisation JSON, de l'export et du seed NetBox.
 - Dépendance à la disponibilité de NetBox, atténuée par le service de la dernière version connue.
-- Les données dans `data/` se limitent aux comptes locaux (`data/auth/`) et au jeu de démonstration.
+- L'application ne persiste plus rien : `data/` ne contient que le jeu de démonstration.
+- Les référents nommés dans NetBox deviennent visibles de tous les lecteurs de la vue.

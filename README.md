@@ -8,7 +8,8 @@ partir de [NetBox](https://netbox.dev) et de son plugin **netbox-it-landscape**.
 - **NetBox est la source de vérité** : domaines, processus, applications et flux y sont saisis,
   avec l'infrastructure, le réseau et tout le détail technique.
 - **it-landscape les montre** à celles et ceux qui ne vont pas dans NetBox : directions,
-  référents métiers, chefs de projet. Lecture seule, aucune saisie dans l'application.
+  référents métiers, chefs de projet. Lecture seule, aucune saisie dans l'application,
+  **accessible à tous sans authentification**.
 
 ## Ce que montre la vue Paysage
 
@@ -33,8 +34,7 @@ npm run dev
 ```
 
 Sans NetBox configuré, l'application affiche un **jeu de démonstration fictif**
-(`data/demo/netbox-landscape.json`, même format que l'API NetBox). Compte de développement :
-`viewer` / `password` (le fichier `.env.local` est créé au premier lancement).
+(`data/demo/netbox-landscape.json`, même format que l'API NetBox).
 
 ## Brancher NetBox
 
@@ -61,14 +61,22 @@ Le plugin suffit. Ces custom fields NetBox, s'ils existent, enrichissent la vue 
 | `code` | Domaine, processus | Code affiché à côté du nom |
 | `criticite_flux` = `non_active`, ou tag `flux-non-active` | Flux | Flux ignorés dans les échanges |
 
-## Authentification
+## Accès
 
-- Comptes locaux : `data/auth/access-rules.json` (mots de passe hachés bcrypt,
-  `npm run hash-password -- 'mot de passe'`).
-- Entra ID / Azure AD : `AZURE_AD_CLIENT_ID`, `AZURE_AD_CLIENT_SECRET`, `AZURE_AD_TENANT_ID`.
-- Toute personne authentifiée lit le paysage ; il n'y a pas de rôle d'écriture.
-- En production (`IT_LANDSCAPE_ENV=production`), le démarrage est refusé si `NEXTAUTH_SECRET`
-  est absent ou par défaut, si `AUTH_ENABLED=false`, ou si le compte `admin/password` existe.
+La vue est **publique et en lecture seule** : pas de compte ni de connexion. Elle n'expose que
+le paysage métier (aucune adresse IP, aucun serveur) ; le jeton NetBox reste côté serveur.
+Pour en restreindre l'accès (réseau interne, SSO d'entreprise), le faire au niveau du reverse
+proxy qui la publie.
+
+## Habillage
+
+| Variable | Effet |
+|---|---|
+| `NEXT_PUBLIC_LOGO_URL` | Logo de l'en-tête (`/logo.png` dans `public/` ou URL) |
+| `NEXT_PUBLIC_ORG_NAME` | Nom affiché au-dessus du titre ; vide = masqué (si le logo le porte déjà) |
+| `NEXT_PUBLIC_APP_TITLE` | Titre de l'application |
+
+Ces variables sont lues au build : relancer `npm run build` après modification.
 
 ## Déploiement
 
@@ -79,7 +87,7 @@ Le plugin suffit. Ces custom fields NetBox, s'ils existent, enrichissent la vue 
 ## Tests
 
 ```bash
-npm test        # modèle NetBox → paysage, filtres et indicateurs, accès, contrôles de démarrage
+npm test        # modèle NetBox → paysage, filtres et indicateurs
 npm run lint
 npm run build
 ```
@@ -89,6 +97,7 @@ npm run build
 La version 0.4 recentre l'application sur la vue métier. Les vues techniques des versions
 précédentes (infrastructure, réseau, flux détaillés, simulation d'incident, qualité de données,
 administration des référentiels JSON) sont retirées : ces informations vivent dans NetBox.
+L'authentification est retirée également : la vue est publique.
 Voir [docs/adr/0003-vue-metier-netbox.md](docs/adr/0003-vue-metier-netbox.md).
 
 ## Licence

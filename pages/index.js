@@ -47,7 +47,6 @@ export default function Paysage() {
   const router = useRouter();
   const [model, setModel] = useState(null);
   const [error, setError] = useState('');
-  const [user, setUser] = useState(null);
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const [selectedId, setSelectedId] = useState(null);
   const [ready, setReady] = useState(false);
@@ -62,10 +61,6 @@ export default function Paysage() {
       })
       .then(data => { if (!cancelled) setModel(data); })
       .catch(e => { if (!cancelled) setError(e.message); });
-    fetch('/api/auth/me')
-      .then(r => r.json())
-      .then(data => { if (!cancelled) setUser(data?.user || null); })
-      .catch(() => {});
     return () => { cancelled = true; };
   }, []);
 
@@ -88,11 +83,6 @@ export default function Paysage() {
   const selectedApp = useMemo(() => model?.applications.find(a => a.id === selectedId) || null, [model, selectedId]);
   const closeDrawer = useCallback(() => setSelectedId(null), []);
 
-  const handleLogout = async () => {
-    await fetch('/api/auth/logout');
-    window.location.href = '/login';
-  };
-
   const scopeLabel = filters.etab === null
     ? 'Tous les établissements'
     : model?.establishments.find(e => e.id === filters.etab)?.name || '';
@@ -107,8 +97,6 @@ export default function Paysage() {
         model={model}
         etab={filters.etab}
         onEtabChange={etab => setFilters(f => ({ ...f, etab }))}
-        user={user}
-        onLogout={handleLogout}
       />
 
       {error && (

@@ -10,9 +10,8 @@ npm install
 npm run dev
 ```
 
-Application locale : http://localhost:3000 (jeu de démonstration sans NetBox ; compte `viewer` /
-`password`). Pour brancher un NetBox, renseigner `NETBOX_URL` et `NETBOX_TOKEN` (lecture seule)
-dans `.env.local`.
+Application locale : http://localhost:3000 (jeu de démonstration sans NetBox). Pour brancher un
+NetBox, renseigner `NETBOX_URL` et `NETBOX_TOKEN` (lecture seule) dans `.env.local`.
 
 ## Avant de proposer une modification
 
