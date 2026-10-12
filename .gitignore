@@ -137,3 +137,6 @@ dist
 data/audit-log.jsonl
 data/.history/
 data/**/*.lock
+
+# Logo propre à l'organisation : déposé au déploiement, jamais versionné
+public/logo-organisation.*

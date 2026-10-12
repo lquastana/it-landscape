@@ -72,7 +72,7 @@ proxy qui la publie.
 
 | Variable | Effet |
 |---|---|
-| `NEXT_PUBLIC_LOGO_URL` | Logo de l'en-tête (`/logo.png` dans `public/` ou URL) |
+| `NEXT_PUBLIC_LOGO_URL` | Logo de l'en-tête : URL, ou fichier déposé dans `public/` au déploiement (`public/logo-organisation.*` est ignoré par git) |
 | `NEXT_PUBLIC_ORG_NAME` | Nom affiché au-dessus du titre ; vide = masqué (si le logo le porte déjà) |
 | `NEXT_PUBLIC_APP_TITLE` | Titre de l'application |
 
